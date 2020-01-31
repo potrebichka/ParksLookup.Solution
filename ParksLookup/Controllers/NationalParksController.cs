@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ParksLookup.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ParksLookup.Controllers
 {
@@ -41,40 +42,43 @@ namespace ParksLookup.Controllers
         return _db.NationalParks.FirstOrDefault(park => park.NationalParkId == id);
     }
 
-    // //POST api/destinations
-    // [HttpPost]
-    // public void Post([FromBody] Destination destination)
-    // {
-    //   _db.Destinations.Add(destination);
-    //   _db.SaveChanges();
-    // }
+    [Authorize(Roles = "Administrator,Accountant")]
+    //POST api/nationalparks
+    [HttpPost]
+    public void Post([FromBody] NationalPark park)
+    {
+      _db.NationalParks.Add(park);
+      _db.SaveChanges();
+    }
 
-    // // PUT api/destinations/5
-    // [HttpPut("{id}")]
-    // public void Put(int id, [FromBody] Destination destination)
-    // {
-    //     destination.DestinationId = id;
-    //     _db.Entry(destination).State = EntityState.Modified;
-    //     _db.SaveChanges();
-    // }
+    [Authorize(Roles = "Administrator,Accountant")]
+    // PUT api/nationalparks/70
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] NationalPark park)
+    {
+      park.NationalParkId = id;
+      _db.Entry(park).State = EntityState.Modified;
+      _db.SaveChanges();
+    }
 
-    // // DELETE api/destinations/5
-    // [HttpDelete("{id}")]
-    // public void Delete(int id)
-    // {
-    //   var destinationToDelete = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
-    //   _db.Destinations.Remove(destinationToDelete);
-    //   _db.SaveChanges();
-    // }
+    [Authorize(Roles = "Administrator")]
+    // DELETE api/nationalparks/70
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+      var parkToDelete = _db.NationalParks.FirstOrDefault(entry => entry.NationalParkId == id);
+      _db.NationalParks.Remove(parkToDelete);
+      _db.SaveChanges();
+    }
 
-    // // get random destination api/destinations/random
-    // [HttpGet("random")]
-    // public ActionResult<Destination> Random ()
-    // {
-    //   List<Destination> destinations = _db.Destinations.ToList();
-    //   var rnd = new Random();
-    //   int rndIdx = rnd.Next(0,destinations.Count-1);
-    //   return destinations[rndIdx];
-    // }
+    // get random national park api/nationalparks/random
+    [HttpGet("random")]
+    public ActionResult<NationalPark> Random ()
+    {
+      List<NationalPark> parks = _db.NationalParks.ToList();
+      var rnd = new Random();
+      int rndIdx = rnd.Next(0,parks.Count-1);
+      return parks[rndIdx];
+    }
   }
 }
