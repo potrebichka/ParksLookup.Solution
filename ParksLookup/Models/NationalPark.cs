@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ParksLookup.Models
 {
     public class NationalPark
     {
         public int NationalParkId {get;set;}
+        [Required]
         public string States {get;set;} 
         public string LatLong {get;set;} 
         public string Description {get;set;} 
@@ -14,6 +17,7 @@ namespace ParksLookup.Models
         public string FullName {get;set;} 
         public string Url {get;set;} 
         public string WeatherInfo {get;set;} 
+        [Required]
         public string Name {get;set;} 
     }
 }
