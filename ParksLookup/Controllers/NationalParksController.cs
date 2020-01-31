@@ -76,15 +76,14 @@ namespace ParksLookup.Controllers
     /// </remarks>
     /// <param name="park"></param>
     /// <returns>A newly created NationalPark</returns>
-    /// <response code="201">Returns the newly created national park</response>
+    /// <response code="201">A new national park was created</response>
     /// <response code="400">If the NationalPark is null</response>  
     [Authorize(Roles = "Administrator,Accountant")]
     [HttpPost]
-    public ActionResult<NationalPark> Post([FromBody] NationalPark park)
+    public void Post([FromBody] NationalPark park)
     {
       _db.NationalParks.Add(park);
       _db.SaveChanges();
-      return CreatedAtRoute("GetTodo", new { id = park.NationalParkId }, park);
     }
 
 
