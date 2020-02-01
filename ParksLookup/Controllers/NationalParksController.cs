@@ -19,6 +19,7 @@ namespace ParksLookup.Controllers
     {
       _db = db;
     }
+
     // GET api/nationalparks
     /// <summary>
     /// View list of all national parks.
@@ -52,7 +53,7 @@ namespace ParksLookup.Controllers
 
     //POST api/nationalparks
     /// <summary>
-    /// Create a new national park. Admin only.
+    /// Create a new national park. Admin, Accountant only.
     /// </summary>
     /// <remarks>
     /// Sample request:

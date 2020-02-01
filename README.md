@@ -6,7 +6,7 @@
 
 ## Description
 
-_An API for state and national parks. The API will list state and national parks._
+_An API for national parks. The API will list national parks._
 
 ## Getting Started
 
@@ -39,21 +39,41 @@ dotnet ef database update
 ```
 dotnet run
 ```
+6. Open by browser of your choice :  http://localhost:5000/ .
 
 ## Specifications:
 
-At the very least, your API should include the following:
+* Available options for unauthorized guests:
 
-Full CRUD functionality.
-Further exploration of one of the following objectives: authentication, versioning, pagination, Swagger documentation, or CORS.
-Complete documentation of API endpoints and the further exploration you did.
+| Type Of Request | Route  | Result |
+| --- | --- | --- |
+| GET | /api/nationalparks/  | Get list of all national parks  |
+| GET | /api/nationalparks?state=CA  | Search national parks by state  |
+| GET | /api/nationalparks?name=bryce  | Search national parks by name / part of name  |
+| GET | /api/nationalparks/34  | Get national park by id  |
+| GET | /api/nationalparks/random  | Get random national park  |
 
-## Screenshots
+* To authorize use the next credentials:
+
+| UserName  | Password | Role |
+| --- | --- | --- |
+| fred  | 123  | Administrator |
+| alice  | 456 | Accountant |
+| joe  | 789 | Guest |
+
+* Go to /api/account/login/ and enter credentials in the body of request. You will get JW token in response. Copy it.
+* Find on the index page Authorize link. Enter your token as "Bearer name_of_token". 
+* Available options for authorized users:
+
+| Type Of Request | Route  | Permitted User Roles | Result |
+| --- | --- | --- | --- |
+| POST | /api/nationalparks/  | Administrator, Accountant | Add a new national park  |
+| PUT | /api/nationalparks/23  | Administrator, Accountant | Edit national park by id  |
+| DELETE | /api/nationalparks/23 | Administrator | Delete national park by id  |
 
 ## Technologies Used
 
-_C#, .NET, CSS, ASP.NET Core MVC, Entity Framework Core, HTML, Bootstrap_
-_C#, .NET, ASP.NET Core MVC, Entity Framework Core_
+_C#, .NET, ASP.NET Core MVC, Entity Framework Core, Swagger_
 
 ### License
 
