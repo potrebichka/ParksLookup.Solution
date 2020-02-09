@@ -39,19 +39,19 @@ dotnet ef database update
 ```
 dotnet run
 ```
-6. Open by browser of your choice :  http://localhost:5000/ .
+6. Open by browser of your choice :  http://localhost:5000/index.html .
 
 ## Specifications:
 
 * Available options for unauthorized guests:
 
-| Type Of Request | Route  | Result |
-| --- | --- | --- |
-| GET | /api/nationalparks/  | Get list of all national parks  |
-| GET | /api/nationalparks?state=CA  | Search national parks by state  |
-| GET | /api/nationalparks?name=bryce  | Search national parks by name / part of name  |
-| GET | /api/nationalparks/34  | Get national park by id  |
-| GET | /api/nationalparks/random  | Get random national park  |
+| Method | URI  | Description | Request | Response | Expected response code |
+| --- | --- | --- | --- | --- | --- |
+| GET | /api/nationalparks/  | Get list of all national parks  | --- | List of national park's objects (JSON) | 200 Success |
+| GET | /api/nationalparks?state={state}  | Search national parks by state  | state=CA | National park object (JSON) / Empty object | 200 Success |
+| GET | /api/nationalparks?name={name}  | Search national parks by name / part of name  | name=bryce | National park object(JSON) /Empty object | 200 Success |
+| GET | /api/nationalparks/{id}  | Get national park by id  | --- | National park object (JSON) | 200 Success, 204 Undocumented |
+| GET | /api/nationalparks/random  | Get random national park  | --- | National park object (JSON) | 200 Success |
 
 * To authorize use the next credentials:
 
@@ -65,11 +65,11 @@ dotnet run
 * Find on the index page Authorize link. Enter your token as "Bearer name_of_token". 
 * Available options for authorized users:
 
-| Type Of Request | Route  | Permitted User Roles | Result |
-| --- | --- | --- | --- |
-| POST | /api/nationalparks/  | Administrator, Accountant | Add a new national park  |
-| PUT | /api/nationalparks/23  | Administrator, Accountant | Edit national park by id  |
-| DELETE | /api/nationalparks/23 | Administrator | Delete national park by id  |
+| Method | URI  | Permitted User Roles | Description | Response | Expected Response Code |
+| --- | --- | --- | --- | --- | --- |
+| POST | /api/nationalparks/  | Administrator, Accountant | Add a new national park | --- | 404 Unauthorized, 200 Success, 201 National park was created, 400 If the national park is null |
+| PUT | /api/nationalparks/23  | Administrator, Accountant | Edit national park by id  | --- | 404 Unauthorized, 200 Success, 201 Returns the updated national park, 400 If the national park is null |
+| DELETE | /api/nationalparks/23 | Administrator | Delete national park by id  | --- | 404 Unauthorized, 200 Success, 500 Internal Error |
 
 ## Technologies Used
 
