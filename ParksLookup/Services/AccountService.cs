@@ -19,8 +19,6 @@ namespace ParksLookup.Services
             new User { Id = 1, Username = "fred", Password = "123", Role = "Administrator"},
             new User { Id = 2, Username = "alice", Password = "456", Role = "Accountant"},
             new User { Id = 3, Username = "joe", Password = "789", Role = "Guest"},
-            new User { Id = 4, Username = "11@11.com", Password = "1q2w3e", Role = "Guest"},
-            new User { Id = 5, Username = "22@22.com", Password = "1q2w3e", Role = "Administrator"},
         };
 
         private readonly IConfiguration _configuration;
