@@ -69,7 +69,7 @@ dotnet run
 | --- | --- | --- | --- | --- | --- |
 | POST | /api/nationalparks/  | Administrator, Accountant | Add a new national park | --- | 404 Unauthorized, 200 Success, 201 National park was created, 400 If the national park is null |
 | PUT | /api/nationalparks/23  | Administrator, Accountant | Edit national park by id  | --- | 404 Unauthorized, 200 Success, 201 Returns the updated national park, 400 If the national park is null |
-| DELETE | /api/nationalparks/23 | Administrator | Delete national park by id  | --- | 404 Unauthorized, 200 Success, 500 Internal Error |
+| DELETE | /api/nationalparks/23 | Administrator | Delete national park by id  | --- | 404 Unauthorized, 200 Success |
 
 ## Technologies Used
 
